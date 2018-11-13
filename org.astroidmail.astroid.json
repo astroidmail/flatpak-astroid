@@ -1,0 +1,233 @@
+{
+    "app-id": "org.astroidmail.astroid",
+    "runtime": "org.gnome.Platform",
+    "runtime-version": "3.30",
+    "sdk": "org.gnome.Sdk",
+    "command": "astroid",
+    "rename-desktop-file": "astroid.desktop",
+    "rename-icon": "libpeas-plugin",
+    "finish-args": [
+        "--socket=x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--share=network",
+        "--filesystem=home",
+        "--persist=path",
+        "--socket=session-bus"
+    ],
+    "cleanup": [
+            "/include",
+            "/lib/pkgconfig",
+            "/share/pkgconfig",
+            "/share/aclocal",
+            "*.la",
+            "*.a"
+    ],
+
+    "modules": [
+        {
+            "name": "boost",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2",
+                    "sha256": "7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7"
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+                "./bootstrap.sh --prefix=/app",
+                "./b2 install"
+            ]
+        },
+
+        {
+            "name": "libpeas",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/libpeas/1.22/libpeas-1.22.0.tar.xz",
+                    "sha256": "5b2fc0f53962b25bca131a5ec0139e6fef8e254481b6e777975f7a1d2702a962"
+                }
+            ]
+        },
+
+
+        {
+            "name": "scdoc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://git.sr.ht/%7Esircmpwn/scdoc/archive/1.5.2.tar.gz",
+                    "sha256": "86591de3741bea5443e7fbc11ff9dc22da90621105b06be524422efd5dec3a29"
+                }
+            ],
+            "buildsystem": "simple",
+            "build-commands": [
+                "make PREFIX=/app",
+                "make PREFIX=/app install"
+            ]
+        },
+
+        {
+            "name": "protobuf",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/protocolbuffers/protobuf/releases/download/v3.6.1/protobuf-all-3.6.1.tar.gz",
+                    "sha256": "fd65488e618032ac924879a3a94fa68550b3b5bcb445b93b7ddf3c925b1a351f"
+                }
+            ]
+        },
+
+        {
+            "name": "libsass",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/sass/libsass/archive/3.5.4.tar.gz",
+                    "sha256": "5f61cbcddaf8e6ef7a725fcfa5d05297becd7843960f245197ebb655ff868770"
+                },
+                {
+                   "type": "script",
+                   "dest-filename": "autogen.sh",
+                   "commands": [ "autoreconf -fi" ]
+                }
+            ]
+        },
+
+        {
+            "name": "sigc++",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libsigc++/2.10/libsigc++-2.10.0.tar.xz",
+                    "sha256": "f843d6346260bfcb4426259e314512b99e296e8ca241d771d21ac64f28298d81"
+                }
+            ]
+        },
+
+        {
+            "name": "glibmm",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.gnome.org/pub/GNOME/sources/glibmm/2.56/glibmm-2.56.0.tar.xz",
+                    "sha256": "6e74fcba0d245451c58fc8a196e9d103789bc510e1eee1a9b1e816c5209e79a9"
+                }
+            ]
+        },
+
+        {
+            "name": "cairomm",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.gnome.org/pub/GNOME/sources/cairomm/1.12/cairomm-1.12.0.tar.xz",
+                    "sha256": "a54ada8394a86182525c0762e6f50db6b9212a2109280d13ec6a0b29bfd1afe6"
+                }
+            ]
+        },
+
+        {
+            "name": "pangomm",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://ftp.gnome.org/pub/GNOME/sources/pangomm/2.40/pangomm-2.40.1.tar.xz",
+                    "sha256": "9762ee2a2d5781be6797448d4dd2383ce14907159b30bc12bf6b08e7227be3af"
+                }
+            ]
+        },
+
+        {
+            "name": "atkmm",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/atkmm/2.24/atkmm-2.24.2.tar.xz",
+                    "sha256": "ff95385759e2af23828d4056356f25376cfabc41e690ac1df055371537e458bd"
+                }
+            ]
+        },
+
+        {
+            "name": "gtkmm",
+            "config-opts": [ "--disable-documentation" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.gnome.org/pub/GNOME/sources/gtkmm/3.22/gtkmm-3.22.2.tar.xz",
+                    "sha256": "91afd98a31519536f5f397c2d79696e3d53143b80b75778521ca7b48cb280090"
+                }
+            ]
+        },
+
+        {
+            "name": "gmime",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gmime/3.2/gmime-3.2.0.tar.xz",
+                    "sha256": "75ec6033f9192488ff37745792c107b3d0ab0a36c2d3e4f732901a771755d7e0"
+                }
+            ]
+        },
+
+        {
+            "name": "talloc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://www.samba.org/ftp/talloc/talloc-2.1.14.tar.gz",
+                    "sha256": "b185602756a628bac507fa8af8b9df92ace69d27c0add5dab93190ad7c3367ce"
+
+                }
+            ]
+        },
+
+        {
+            "name": "xapian",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://oligarchy.co.uk/xapian/1.4.7/xapian-core-1.4.7.tar.xz",
+                    "sha256": "13f08a0b649c7afa804fa0e85678d693fd6069dd394c9b9e7d41973d74a3b5d3"
+
+                }
+            ]
+        },
+
+        {
+            "name": "notmuch",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://notmuchmail.org/releases/notmuch-0.28.tar.gz",
+                    "sha256": "acca75cec91651ccd2a7e31f7004e2ae14eff4ae38e375b8a88414c464cd0a37"
+
+                }
+            ]
+        },
+
+        {
+            "name": "astroid",
+            "buildsystem": "cmake",
+            "build-commands": [
+                "cmake -H. -Bbuild -DCMAKE_INSTALL_PREFIX=/app",
+                "cmake --build build --target install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/astroidmail/astroid/archive/v0.14.tar.gz",
+                    "sha256": "f2642968919527008d383b4c32d4b038c7b6f785ea084dde1222a65162ebc5ca"
+                }
+            ]
+        }
+    ]
+}
